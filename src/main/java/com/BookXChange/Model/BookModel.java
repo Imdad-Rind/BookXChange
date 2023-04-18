@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 public class BookModel {
     UUID BookID;
-    String BookTile;
+    String BookTitle;
     String BookAuthor;
     String BookDescription;
 }
