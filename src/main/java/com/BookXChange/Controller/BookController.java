@@ -30,7 +30,7 @@ public class BookController {
     public String process_uploadBook(@ModelAttribute BookModel book){
         bookservice.addBook(book);
 
-        return "redirect:/bookupload";
+        return "redirect:/book/bookupload";
     }
 
 }

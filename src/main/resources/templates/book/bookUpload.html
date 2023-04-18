@@ -11,13 +11,14 @@
     <h1>Enter the detail of book to be exchange </h1>
 
 
-    <form action="/process_bookupload" method="post" th:object="${addbookdetails}">
+    <form action="/book/process_bookupload" method="post" th:object="${addbookdetails}">
 
-        Book Title: <input type="text" placeholder="Enter Book Name" th:field="*{bookname}"><br><br>
-        Author Name: <input type="text" placeholder="Writer Name" th:field="*{authorname}"><br><br>
-        Published Year: <input type="date" placeholder="mm-yyyy" th:field="*{publishedyear}"><br><br>
-        Condition: <input type="number" placeholder="1-10" th:field="*{condition}"><br><br>
-        Bought For: <input type="number" placeholder="Write Book Price" th:field="*{price}"><br><br>
+        Book Title: <input type="text" placeholder="Enter Book Name" th:field="*{BookTitle}"><br><br>
+        Author Name: <input type="text" placeholder="Writer Name" th:field="*{BookAuthor}"><br><br>
+        Book Description: <input type="text" placeholder="What is this book about?" th:field="*{BookDescription}"><br><br>
+        Published Year: <input type="date" placeholder="mm-yyyy" th:field="*{PublishedYear}"><br><br>
+        Condition: <input type="number" placeholder="1-10" th:field="*{Condition}"><br><br>
+        Bought For: <input type="number" placeholder="Write Book Price" th:field="*{Price}"><br><br>
 
         <input type="submit" value="Upload"><br><br>
         
