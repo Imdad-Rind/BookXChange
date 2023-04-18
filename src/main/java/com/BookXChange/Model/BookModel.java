@@ -10,8 +10,11 @@ import java.util.UUID;
 @Getter
 @Setter
 public class BookModel {
-    UUID BookID;
+    Long BookID;
     String BookTitle;
     String BookAuthor;
     String BookDescription;
+    String PublishedYear;
+    String Condition;
+    String Price;
 }

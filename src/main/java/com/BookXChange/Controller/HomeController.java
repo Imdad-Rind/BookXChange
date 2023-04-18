@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping(path = "/book_upload")
-    public String uploadBook(){
-
-        return "book/bookUpload";
-    }
+  @GetMapping("/")
+    public String Home(){
+      return "home/index";
+  }
 }

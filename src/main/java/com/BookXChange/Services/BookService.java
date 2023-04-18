@@ -3,23 +3,19 @@ package com.BookXChange.Services;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.BookXChange.Model.BookModel;
 import org.springframework.stereotype.Service;
-
-import com.BookXChange.Model.bookUpload;
 
 @Service
 public class BookService {
 
-    List<bookUpload> uploadedbooks = new ArrayList<>();
+    List<BookModel> uploadedBooks = new ArrayList<>();
 
 
-    public void addBook(bookUpload book){
+    public void addBook(BookModel book){
 
-        uploadedbooks.add(book);
+        uploadedBooks.add(book);
     }
 
-    // public List<bookUpload> getList(){
 
-    //     return uploadedbooks;
-    // }
 }

@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class UserModel {
 
+    Long UserID;
     String UserName;
-
     String UserEmail;
     String UserPassword;
 
