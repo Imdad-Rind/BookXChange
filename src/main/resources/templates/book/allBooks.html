@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Books List</title>
+
 </head>
 <body>
-$END$
+<h1>list of all books</h1>
+ <table th:each="books : ${booksList}" >
+    <div >
+        <h2>Book Title</h2>
+        <p th:text="${books.BookTitle}"></p>
+        <h2>Book Author</h2>
+        <p th:text="${books.BookAuthor}"></p>
+        <br>
+        <a th:href="@{/books/bookDetail/{id}(id = ${books.BookID}) }"> <h5>Book Detail</h5> </a>
+
+        <hr>
+    </div>
+
+
+ </table>
 </body>
 </html>

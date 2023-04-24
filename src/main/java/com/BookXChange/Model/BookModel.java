@@ -16,5 +16,5 @@ public class BookModel {
     String BookDescription;
     String PublishedYear;
     String Condition;
-    String Price;
+    Double Price;
 }

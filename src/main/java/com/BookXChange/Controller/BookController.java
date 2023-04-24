@@ -4,33 +4,67 @@ import com.BookXChange.Model.BookModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.BookXChange.Services.BookService;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 
 @Controller
-@RequestMapping("/book")
+@RequestMapping("/books")
 public class BookController {
 
     @Autowired
     BookService bookservice;
+    public BookController(BookService _bookservice){
+        this.bookservice = _bookservice;
+    }
     
-    @GetMapping(path = "/bookupload")
+    @GetMapping("/bookUpload")
     public String uploadBook(Model model){
 
-        model.addAttribute("addbookdetails", new BookModel());
-        return "book/bookUpload";
+        model.addAttribute("addBookDetails", new BookModel());
+        return "book/BookUplaod";
     }
 
-   @PostMapping(path = "/process_bookupload")
-    public String process_uploadBook(@ModelAttribute BookModel book){
+   @PostMapping( "/processBookUpload")
+    public String processBookUpload(@ModelAttribute BookModel book){
         bookservice.addBook(book);
+        return "redirect:/books/getAllBooks";
+    }
 
-        return "redirect:/bookupload";
+    @GetMapping("/getAllBooks")
+    public String getAllBooksList(Model model){
+       var BooksList = bookservice.getAllBooks();
+       model.addAttribute("booksList",BooksList);
+       return "book/allBooks";
+
+    }
+    @GetMapping("bookDetail/{id}")
+    public String getBookByID(@PathVariable("id") long id, Model model){
+        var bookByID = bookservice.getBookByID(id);
+        model.addAttribute("book",bookByID);
+        return "book/bookDetail";
+    }
+
+    @GetMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") long id){
+        bookservice.deleteBook(id);
+        return "redirect:/books/getAllBooks";
+    }
+
+    @PostMapping("/updateBook")
+    public String updateBook( @ModelAttribute BookModel bookModel ){
+        bookservice.updateBookDetail(bookModel.getBookID(), bookModel);
+        var bookId = bookModel.getBookID().toString();
+        return "redirect:/books/bookDetail/" + bookId;
+    }
+
+    @GetMapping("/updateBookPage/{id}")
+    public String updateBookPage(@PathVariable("id") long id, Model model){
+        var bookToBeUpdated = bookservice.getBookByID(id);
+        model.addAttribute("bookUpdate", bookToBeUpdated);
+        return "book/bookUpdatePage";
     }
 
 }

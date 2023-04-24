@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Book Detail</title>
 </head>
 <body>
-$END$
+    <h1 th:text="${book.BookTitle}"></h1>
+
+    <table th:each="myBook : ${book}">
+
+        <h3>Book Author</h3>
+        <p th:text="${myBook.BookAuthor}"></p>
+        <h3>Book Condition</h3>
+        <p th:text="${myBook.Condition}"></p>
+        <h3>Book Published Year</h3>
+        <p th:text="${myBook.PublishedYear}"></p>
+        <h3>Book Price</h3>
+        <p>(it the price the owner bought it for)</p>
+        <p th:text="${myBook.Price}"></p>
+        <h3>Book Description</h3>
+        <p th:text="${myBook.BookDescription}"></p>
+        <br>
+
+
+    </table>
+
+    <a th:href="@{/books/updateBookPage/{id}(id = ${book.BookID}) }"> <h5> update Book Detail</h5> </a>
+
 </body>
 </html>
