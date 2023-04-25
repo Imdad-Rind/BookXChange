@@ -1,4 +1,4 @@
-git <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@ git <!DOCTYPE html>
 <h1>Enter the detail of book to be exchange </h1>
 
 
-<form action="#" th:action="@{/books/processBookUpload}" method="post" th:object="${addBookDetails}">
+<form th:action="@{/book/processbookupload}" method="post" th:object="${addBookDetails}">
     <label>Book Title:</label>
     <input type="text" placeholder="Enter Book Name" th:field="*{BookTitle}"><br><br>
 
@@ -24,7 +24,7 @@ git <!DOCTYPE html>
     <label>Condition: </label>
     <input type="number" placeholder="1-10" th:field="*{condition}"><br><br>
 
-    <label>Book Short Description </label><br><br>
+    <label>Book Short Description: </label><br><br>
     <textarea cols="45" rows="10" th:field="*{BookDescription}"></textarea>
 
     <p>Enter the price you bought the book</p>

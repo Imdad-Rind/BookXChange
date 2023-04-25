@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Setter
 public class BookModel {
     Long BookID;
-    String BookTitle;
+    public String BookTitle;
     String BookAuthor;
     String BookDescription;
     String PublishedYear;

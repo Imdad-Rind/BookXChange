@@ -21,16 +21,14 @@ public class BookController {
     
     @GetMapping(path = "/bookupload")
     public String uploadBook(Model model){
-
-        model.addAttribute("addbookdetails", new BookModel());
+        model.addAttribute("addBookDetails", new BookModel());
         return "book/bookUpload";
     }
 
-   @PostMapping(path = "/process_bookupload")
+   @PostMapping(path = "/processbookupload")
     public String process_uploadBook(@ModelAttribute BookModel book){
         bookservice.addBook(book);
-
-        return "redirect:/bookupload";
+        return "redirect:/book/bookupload";
     }
 
 }
