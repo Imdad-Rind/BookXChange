@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+
 @RequestMapping("/book")
 public class BookController {
 
@@ -21,7 +22,8 @@ public class BookController {
     
     @GetMapping(path = "/bookupload")
     public String uploadBook(Model model){
-        model.addAttribute("addBookDetails", new BookModel());
+        BookModel book = new BookModel();
+        model.addAttribute("addBookDetails", book);
         return "book/bookUpload";
     }
 
@@ -29,6 +31,12 @@ public class BookController {
     public String process_uploadBook(@ModelAttribute BookModel book){
         bookservice.addBook(book);
         return "redirect:/book/bookupload";
+    }
+
+    @GetMapping(path = "/getAllBooks")
+    public String allBooks(Model model){
+        model.addAttribute("booksList",bookservice.getAllBooks());
+        return "book/allbooks";
     }
 
 }
