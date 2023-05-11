@@ -14,8 +14,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 @RequestMapping("/books")
 public class BookController {
 
-    @Autowired
+
     BookService bookservice;
+    @Autowired
     public BookController(BookService _bookservice){
         this.bookservice = _bookservice;
     }
@@ -24,7 +25,7 @@ public class BookController {
     public String uploadBook(Model model){
 
         model.addAttribute("addBookDetails", new BookModel());
-        return "book/BookUplaod";
+        return "book/BookUpload";
     }
 
    @PostMapping( "/processBookUpload")
@@ -49,13 +50,13 @@ public class BookController {
 
     @GetMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id") long id){
-        bookservice.deleteBook(id);
+        bookservice.deleteBookByID(id);
         return "redirect:/books/getAllBooks";
     }
 
     @PostMapping("/updateBook")
     public String updateBook( @ModelAttribute BookModel bookModel ){
-        bookservice.updateBookDetail(bookModel.getBookID(), bookModel);
+        bookservice.updateBookByID(bookModel.getBookID(), bookModel);
         var bookId = bookModel.getBookID().toString();
         return "redirect:/books/bookDetail/" + bookId;
     }

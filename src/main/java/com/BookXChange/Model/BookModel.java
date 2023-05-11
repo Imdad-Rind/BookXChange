@@ -3,18 +3,22 @@ package com.BookXChange.Model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-import java.util.UUID;
-
-@Component
+import java.time.LocalDate;
+// import java.util.UUID;
 @Getter
 @Setter
+@Entity
 public class BookModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     Long BookID;
     String BookTitle;
     String BookAuthor;
     String BookDescription;
-    String PublishedYear;
+    LocalDate PublishedYear;
     String Condition;
     Double Price;
 }

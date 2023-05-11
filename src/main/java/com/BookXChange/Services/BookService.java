@@ -4,12 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.BookXChange.Model.BookModel;
+import com.BookXChange.Repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
 
-    List<BookModel> uploadedBooks = new ArrayList<>();
+
+    BookRepository bookRepository;
+    @Autowired
+    public BookService(BookRepository bookRepository){this.bookRepository = bookRepository;}
+
+    public void addBook(BookModel book){
+        bookRepository.save(book);
+    }
+    public List<BookModel> getAllBooks(){
+       return bookRepository.findAll();
+    }
+    public BookModel getBookByID(long id){
+        return bookRepository.findById(id).get();
+    }
+    public void updateBookByID(long id,BookModel bookModel){
+        BookModel bookToBeUpdated = bookRepository.findById(id).get();
+        bookToBeUpdated = bookModel;
+        bookRepository.save(bookToBeUpdated);
+    }
+
+    public void deleteBookByID(long id){
+        bookRepository.deleteById(id);
+    }
+
+    /*List<BookModel> uploadedBooks = new ArrayList<>();
     long bookId = -1;
 
     public void addBook(BookModel book){
@@ -39,5 +65,5 @@ public class BookService {
         uploadedBooks.set(uploadedBooks.indexOf(getBookByID(id)), bookModel );
     }
 
-
+*/
 }
