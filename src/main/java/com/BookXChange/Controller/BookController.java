@@ -28,10 +28,11 @@ public class BookController {
         return "book/BookUpload";
     }
 
-   @PostMapping(path = "/processbookupload")
+   @PostMapping(path = "/processBookUpload")
     public String process_uploadBook(@ModelAttribute BookModel book){
         bookservice.addBook(book);
-        return "redirect:/book/bookupload";
+        var bookID = book.getBookID().toString();
+        return "redirect:/book/bookDetail/"+bookID;
     }
 
     @GetMapping(path = "/getAllBooks")
@@ -39,18 +40,24 @@ public class BookController {
         model.addAttribute("booksList",bookservice.getAllBooks());
         return "book/allbooks";
     }
+    @GetMapping("bookDetail/{id}")
+    public String getBookByID(@PathVariable("id") long id, Model model){
+        var bookByID = bookservice.getBookByID(id);
+        model.addAttribute("book",bookByID);
+        return "book/bookDetail";
+    }
 
     @GetMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id") long id){
         bookservice.deleteBookByID(id);
-        return "redirect:/books/getAllBooks";
+        return "redirect:/book/getAllBooks";
     }
 
     @PostMapping("/updateBook")
     public String updateBook( @ModelAttribute BookModel bookModel ){
         bookservice.updateBookByID(bookModel.getBookID(), bookModel);
         var bookId = bookModel.getBookID().toString();
-        return "redirect:/books/bookDetail/" + bookId;
+        return "redirect:/book/bookDetail/" + bookId;
     }
 
     @GetMapping("/updateBookPage/{id}")

@@ -11,7 +11,7 @@
 <h1>Enter the detail of book to be exchange </h1>
 
 
-<form action="#" th:action="@{/books/updateBook}" method="post" th:object="${bookUpdate}">
+<form action="#" th:action="@{/book/updateBook}" method="post" th:object="${bookUpdate}">
   <input type="hidden" th:field="*{BookID}">
   <label>Update Book Title:</label>
   <input type="text" placeholder="Enter Book Name" th:field="*{BookTitle}"><br><br>
