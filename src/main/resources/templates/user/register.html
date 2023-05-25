@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BXC - register</title>
+</head>
+<body>
+    <h2>register new user</h2>
+
+    <div th:if="${param.error}">
+        <span th:text="${param.error}"></span> username already exists.
+    </div>
+
+    <form th:action="@{/auth/processRegister}" method="post" id="RegistrationForm">
+        <label for="fullname">fullname: </label>
+        <input type="text" name="fullname" id="fullname"/><br><br>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username"/><br><br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password"/><br><br>
+        <label for="Email">email: </label>
+        <input type="email" name="email" id="email"/><br><br>
+        <input type="submit" value="Register"/>
+    </form>
+</body>
+</html>
