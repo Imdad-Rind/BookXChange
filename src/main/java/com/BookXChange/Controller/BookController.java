@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.BookXChange.Services.BookService;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 
 @Controller
-@RequestMapping("/books")
+
+@RequestMapping("/book")
 public class BookController {
 
 
@@ -21,25 +21,24 @@ public class BookController {
         this.bookservice = _bookservice;
     }
     
-    @GetMapping("/bookUpload")
+    @GetMapping(path = "/bookupload")
     public String uploadBook(Model model){
 
         model.addAttribute("addBookDetails", new BookModel());
         return "book/BookUpload";
     }
 
-   @PostMapping( "/processBookUpload")
-    public String processBookUpload(@ModelAttribute BookModel book){
+   @PostMapping(path = "/processBookUpload")
+    public String process_uploadBook(@ModelAttribute BookModel book){
         bookservice.addBook(book);
-        return "redirect:/books/getAllBooks";
+        var bookID = book.getBookID().toString();
+        return "redirect:/book/bookDetail/"+bookID;
     }
 
-    @GetMapping("/getAllBooks")
-    public String getAllBooksList(Model model){
-       var BooksList = bookservice.getAllBooks();
-       model.addAttribute("booksList",BooksList);
-       return "book/allBooks";
-
+    @GetMapping(path = "/getAllBooks")
+    public String allBooks(Model model){
+        model.addAttribute("booksList",bookservice.getAllBooks());
+        return "book/allbooks";
     }
     @GetMapping("bookDetail/{id}")
     public String getBookByID(@PathVariable("id") long id, Model model){
@@ -51,14 +50,14 @@ public class BookController {
     @GetMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id") long id){
         bookservice.deleteBookByID(id);
-        return "redirect:/books/getAllBooks";
+        return "redirect:/book/getAllBooks";
     }
 
     @PostMapping("/updateBook")
     public String updateBook( @ModelAttribute BookModel bookModel ){
         bookservice.updateBookByID(bookModel.getBookID(), bookModel);
         var bookId = bookModel.getBookID().toString();
-        return "redirect:/books/bookDetail/" + bookId;
+        return "redirect:/book/bookDetail/" + bookId;
     }
 
     @GetMapping("/updateBookPage/{id}")
