@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 
 @Getter
@@ -25,6 +26,10 @@ public class UserModel implements UserDetails {
     @Column(unique = true , nullable = false)
     String email;
     String password;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL
+    )
+    Set<BookModel> books;
 
     public UserModel(String fullname, String username, String email, String password) {
         this.fullname = fullname;
@@ -57,4 +62,6 @@ public class UserModel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

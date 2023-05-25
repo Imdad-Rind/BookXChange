@@ -22,4 +22,7 @@ public class BookModel {
     LocalDate PublishedYear;
     String Condition;
     Double Price;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "UserID", nullable = false)
+    UserModel user;
 }

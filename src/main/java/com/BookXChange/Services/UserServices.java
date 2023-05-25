@@ -19,6 +19,7 @@ public class UserServices {
         this.userRepository = userRepository;
         this.passwordEncoder = encoder;
     }
+    private String currentUser;
 
     public void saveUser(RegistrationForm form){
         userRepository.save(form.toUser(passwordEncoder));
@@ -37,5 +38,14 @@ public class UserServices {
 
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
+    }
+
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 }

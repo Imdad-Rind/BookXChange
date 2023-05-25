@@ -36,7 +36,7 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests(
                 request -> request
                         .requestMatchers(toH2Console()).permitAll()
-                        .requestMatchers("/auth/**","logout","/css/**","/images/**","/js/**").permitAll()
+                        .requestMatchers("/","/auth/**","logout","/css/**","/images/**","/js/**").permitAll()
                         .anyRequest().authenticated()
         )
                 .formLogin(

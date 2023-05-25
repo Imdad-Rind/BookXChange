@@ -1,6 +1,8 @@
 package com.BookXChange.Controller;
 
 import com.BookXChange.Model.BookModel;
+import com.BookXChange.Model.UserModel;
+import com.BookXChange.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,10 @@ public class BookController {
 
 
     BookService bookservice;
+    UserServices userServices;
     @Autowired
-    public BookController(BookService _bookservice){
+    public BookController(BookService _bookservice, UserServices userServices){
+        this.userServices = userServices;
         this.bookservice = _bookservice;
     }
     
@@ -30,6 +34,7 @@ public class BookController {
 
    @PostMapping(path = "/processBookUpload")
     public String process_uploadBook(@ModelAttribute BookModel book){
+        book.setUser(userServices.getUserByUsername(userServices.getCurrentUser()));
         bookservice.addBook(book);
         var bookID = book.getBookID().toString();
         return "redirect:/book/bookDetail/"+bookID;

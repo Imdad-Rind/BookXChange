@@ -1,6 +1,7 @@
 package com.BookXChange.Controller;
 
 import com.BookXChange.Model.RegistrationForm;
+import com.BookXChange.Model.UserModel;
 import com.BookXChange.Services.UserServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class AuthController {
 
     @PostMapping("/processRegister")
     public String processRegister (RegistrationForm form){
+        userServices.setCurrentUser(form.getUsername());
         userServices.saveUser(form);
         return "redirect:/auth/login";
     }

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>BookXChange| Home</title>
-</head>
+
 <body>
+<div th:replace="fragments/header :: header " ></div>
+
 <h1> Welcome to BookXChange</h1>
 
 <p> upload new book</p>
@@ -13,7 +12,7 @@
 <p> list of all books</p>
 <a href="/book/getAllBooks" >list</a>
 
-
+<div th:replace="fragments/footer :: footer" ></div>
 
 </body>
 </html>
