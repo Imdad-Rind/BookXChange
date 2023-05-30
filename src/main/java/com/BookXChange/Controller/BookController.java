@@ -72,4 +72,11 @@ public class BookController {
         return "book/bookUpdatePage";
     }
 
+    @GetMapping("/exchange/{id}")
+    public String exchange(@PathVariable("id")long id,Model model){
+        model.addAttribute("book",bookservice.getBookByID(id));
+        model.addAttribute("addBookDetails", new BookModel());
+        return "book/exchange";
+    }
+
 }

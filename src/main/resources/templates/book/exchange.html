@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <body>
-$END$
+<div th:replace="fragments/header :: header " ></div>
+    <p> the book you wanted </p>
+    <h4 th:text="${book.BookTitle}"></h4><br><br>
+    <p>please give an offer to exchange the book</p>
+
+
+<form action="#" th:action="@{/book/processBookUpload}" method="post" th:object="${addBookDetails}">
+    <label>Book Title:</label>
+    <input type="text" placeholder="Enter Book Name" th:field="*{BookTitle}"><br><br>
+
+    <label>Author Name: </label>
+    <input type="text" placeholder="Writer Name" th:field="*{BookAuthor}"><br><br>
+
+    <label>Published Year: </label>
+    <input type="date" placeholder="mm-yyyy" th:field="*{PublishedYear}"><br><br>
+
+    <label>Condition: </label>
+    <input type="number" placeholder="1-10" th:field="*{condition}"><br><br>
+
+    <label>Book Short Description </label><br><br>
+    <textarea cols="45" rows="10" th:field="*{BookDescription}"></textarea>
+
+    <p>Enter the price you bought the book</p>
+    <label>Bought For: </label>
+    <input type="number" placeholder="Write Book Price" th:field="*{price}"><br><br>
+
+
+    <input type="submit" value="offer"><br><br>
+
+
+</form>
+
+
+<div th:replace="fragments/footer :: footer" ></div>
+
 </body>
 </html>

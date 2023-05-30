@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <body>
-$END$
+    <div th:replace="fragments/header :: header " ></div>
+
+    <div th:object="${userIfo}" >
+        <h2>Hi <span th:text="*{username}" ></span></h2>
+    </div>
+    <p>list of all books you uploaded</p>
+    <div th:each="books : ${userBooks}">
+        <!--<div th:if="${#lists.size(${userBooks})==0}"> you have not uploaded any book yet </div>-->
+        <ul>
+            <li th:text="${books.BookTitle}"></li>
+            <li th:text="${books.BookAuthor}"></li>
+            <li><a th:href="@{/book/bookDetail/{id}(id = ${books.BookID}) }"> <h5>Book Detail</h5> </a></li>
+        </ul>
+
+    </div>
+
+
+    <div th:replace="fragments/footer :: footer" ></div>
+
 </body>
 </html>

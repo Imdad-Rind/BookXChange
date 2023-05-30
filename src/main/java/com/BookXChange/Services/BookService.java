@@ -3,6 +3,7 @@ package com.BookXChange.Services;
 import java.util.List;
 
 import com.BookXChange.Model.BookModel;
+import com.BookXChange.Model.UserModel;
 import com.BookXChange.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,9 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
+    public List<BookModel> getBookByUser(UserModel user){
+        return bookRepository.findAllBookByUser(user);
+    }
 
 
 
