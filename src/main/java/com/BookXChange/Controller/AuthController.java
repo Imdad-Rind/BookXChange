@@ -1,7 +1,6 @@
 package com.BookXChange.Controller;
 
 import com.BookXChange.Model.RegistrationForm;
-import com.BookXChange.Model.UserModel;
 import com.BookXChange.Services.UserServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

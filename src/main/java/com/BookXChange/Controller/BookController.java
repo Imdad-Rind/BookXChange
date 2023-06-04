@@ -1,7 +1,6 @@
 package com.BookXChange.Controller;
 
 import com.BookXChange.Model.BookModel;
-import com.BookXChange.Model.UserModel;
 import com.BookXChange.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

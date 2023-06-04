@@ -2,7 +2,6 @@ package com.BookXChange.Model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,6 +17,7 @@ public class BookModel {
     Long BookID;
     String BookTitle;
     String BookAuthor;
+    String BookISBN;
     String BookDescription;
     LocalDate PublishedYear;
     String Condition;
